@@ -1,0 +1,121 @@
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #eafaf1;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    width: 100%;
+    background: #6ee7b7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw;
+    min-width: 0;
+    height: 60px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-sizing: border-box;
+}
+.navbar-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #14532d;
+    letter-spacing: 1px;
+}
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+@media (max-width: 500px) {
+    .navbar {
+        padding: 0 2vw;
+    }
+    .navbar-title {
+        font-size: 1.1rem;
+    }
+    .navbar-menu {
+        gap: 10px;
+    }
+}
+.navbar-menu li {
+    font-size: 1rem;
+    color: #14532d;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 6px 16px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+.navbar-menu li.active, .navbar-menu li:hover {
+    background: #bbf7d0;
+    color: #065f46;
+}
+
+.container {
+    background: #fff;
+    max-width: 420px;
+    margin: 48px auto 0 auto;
+    padding: 36px 30px 24px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(22, 163, 74, 0.08);
+}
+h1 {
+    text-align: center;
+    color: #14532d;
+    margin-bottom: 28px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+form label {
+    display: block;
+    margin-bottom: 6px;
+    color: #166534;
+    font-weight: 500;
+}
+form {
+    box-sizing: border-box;
+}
+form input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1.5px solid #bbf7d0;
+    border-radius: 6px;
+    font-size: 15px;
+    background: #f0fdf4;
+    transition: border 0.2s;
+}
+form input:focus {
+    border: 1.5px solid #22c55e;
+    outline: none;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background: #22c55e;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.5px;
+}
+button:hover {
+    background: #16a34a;
+}
+#mensagem {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 15px;
+    color: #166534;
+    min-height: 24px;
+}
