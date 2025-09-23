@@ -11,15 +11,38 @@ const contratoABI = [
         "name": "cadastrarPaciente",
         "outputs": [],
         "stateMutability": "nonpayable",
-        "type": "function",
-        "payable": false
+        "type": "function"
+    },
+    // nonpayable = altera o estado, não aceita Ether
+    // view = só leitura, não altera nada no contrato
+    {
+        "inputs": [],
+        "name": "consultarPacientes",
+        "outputs": [
+            {
+                "components": [
+                    { "internalType": "uint256", "name": "id", "type": "uint256" },
+                    { "internalType": "string", "name": "nome", "type": "string" },
+                    { "internalType": "string", "name": "cpf", "type": "string" },
+                    { "internalType": "uint256", "name": "idade", "type": "uint256" },
+                    { "internalType": "string", "name": "endereco", "type": "string" }
+                ],
+                // array de structs Paciente definidos dentro do contrato cadastroPaciente
+                "internalType": "struct CadastroPaciente.Paciente[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
     }
 ];
 
 // Endereço do  contrato no ganache após o deploy
-const contratoEndereco = "0xAafcdfE8DA5CD62F77Ec93B4a9D2c58EdD914E26";
+const contratoEndereco = "0x648db6a1eD4281006DAd970CB1C227343dab88C6";
 
 // Inicializa o Web3 
+
 window.addEventListener('DOMContentLoaded', async () => {
     const web3 = new Web3('http://127.0.0.1:7545');
     let accounts;
@@ -34,7 +57,26 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Inicializa o contrato
     const contrato = new web3.eth.Contract(contratoABI, contratoEndereco);
 
-    //   Inicializa o formulário de cadastro do paciente
+    // Alternar abas
+    const menuItems = document.querySelectorAll('.navbar-menu li');
+    const cadastroContainer = document.getElementById('cadastroContainer');
+    const listaContainer = document.getElementById('listaContainer');
+    menuItems.forEach((item, idx) => {
+        item.addEventListener('click', () => {
+            menuItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            if (item.textContent.trim() === 'Cadastrar') {
+                cadastroContainer.style.display = '';
+                listaContainer.style.display = 'none';
+            } else if (item.textContent.trim() === 'Lista') {
+                cadastroContainer.style.display = 'none';
+                listaContainer.style.display = '';
+                listarPacientes();
+            }
+        });
+    });
+
+    // Inicializa o formulário de cadastro do paciente
     document.getElementById('cadastroForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const nome = document.getElementById('nome').value.trim();
@@ -74,4 +116,26 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         }
     });
+
+    // Função para listar pacientes
+    async function listarPacientes() {
+        const tabela = document.getElementById('tabelaPacientes').querySelector('tbody');
+        const mensagemLista = document.getElementById('mensagemLista');
+        tabela.innerHTML = '';
+        mensagemLista.innerText = '';
+        try {
+            const pacientes = await contrato.methods.consultarPacientes().call();
+            if (!pacientes || pacientes.length === 0) {
+                mensagemLista.innerText = 'Nenhum paciente cadastrado.';
+                return;
+            }
+            pacientes.forEach(paciente => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${paciente.id}</td><td>${paciente.nome}</td><td>${paciente.cpf}</td><td>${paciente.idade}</td><td>${paciente.endereco}</td>`;
+                tabela.appendChild(row);
+            });
+        } catch (err) {
+            mensagemLista.innerText = 'Erro ao buscar pacientes.';
+        }
+    }
 });

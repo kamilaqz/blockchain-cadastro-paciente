@@ -32,29 +32,8 @@ contract CadastroPaciente {
         cpfCadastrado[_cpf] = true;
     }
 
-    function consultarPaciente(uint _id)
-        public
-        view
-        returns (
-            uint,
-            string memory,
-            string memory,
-            uint,
-            string memory
-        )
-    {
-        for (uint i = 0; i < pacientes.length; i++) {
-            if (pacientes[i].id == _id) {
-                return (
-                    pacientes[i].id,
-                    pacientes[i].nome,
-                    pacientes[i].cpf,
-                    pacientes[i].idade,
-                    pacientes[i].endereco
-                );
-            }
-        }
-        revert("Paciente nao encontrado!");
+    function consultarPacientes() public view returns (Paciente[] memory) {
+        return pacientes;
     }
 
     function consultarPacientePorCPF(string memory _cpf)

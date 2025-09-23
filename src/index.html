@@ -18,7 +18,7 @@
             <li>Pesquisa</li>
         </ul>
     </nav>
-    <div class="container">
+    <div class="container-cadastro" id="cadastroContainer">
         <h1>Cadastro de Paciente</h1>
         <form id="cadastroForm">
             <label for="nome">Nome*</label>
@@ -36,6 +36,24 @@
             <button type="submit">Cadastrar</button>
         </form>
         <div id="mensagem"></div>
+    </div>
+    <div class="container-lista" id="listaContainer" style="display:none">
+        <h1>Lista de Pacientes</h1>
+        <table id="tabelaPacientes" style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Idade</th>
+                    <th>Endereço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Pacientes serão inseridos aqui -->
+            </tbody>
+        </table>
+        <div id="mensagemLista"></div>
     </div>
     <script src="cadastro.js"></script>
 </body>
