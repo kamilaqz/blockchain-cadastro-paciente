@@ -14163,12 +14163,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x648db6a1eD4281006DAd970CB1C227343dab88C6",
-      "transactionHash": "0x320101d1454c7c4ddca095a126d3e0792b1f14f4f35432cb13dda90f33b70202"
+      "address": "0x558c025fee5346178C72571a140704F6dE437aB3",
+      "transactionHash": "0x393ea5ce03fb2f9997c5b1c00a357a4d4409271ba65f4703298b164c862e3b59"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-09-22T23:53:02.372Z",
+  "updatedAt": "2025-09-24T23:16:31.195Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
