@@ -36,16 +36,12 @@ contract CadastroPaciente {
         return pacientes;
     }
 
-    function consultarPacientePorCPF(string memory _cpf)
+    function consultarPacientePorCPF(
+        string memory _cpf
+    )
         public
         view
-        returns (
-            uint,
-            string memory,
-            string memory,
-            uint,
-            string memory
-        )
+        returns (uint, string memory, string memory, uint, string memory)
     {
         for (uint i = 0; i < pacientes.length; i++) {
             if (keccak256(bytes(pacientes[i].cpf)) == keccak256(bytes(_cpf))) {
